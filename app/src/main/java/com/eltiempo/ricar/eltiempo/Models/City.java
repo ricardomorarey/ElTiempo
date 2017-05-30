@@ -1,4 +1,4 @@
-package com.eltiempo.ricar.eltiempo;
+package com.eltiempo.ricar.eltiempo.Models;
 
 import com.google.gson.annotations.Expose;
 

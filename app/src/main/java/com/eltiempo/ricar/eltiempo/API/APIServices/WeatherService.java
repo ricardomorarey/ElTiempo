@@ -1,4 +1,6 @@
-package com.eltiempo.ricar.eltiempo;
+package com.eltiempo.ricar.eltiempo.API.APIServices;
+
+import com.eltiempo.ricar.eltiempo.Models.City;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -1,8 +1,13 @@
-package com.eltiempo.ricar.eltiempo;
+package com.eltiempo.ricar.eltiempo.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.eltiempo.ricar.eltiempo.API.API;
+import com.eltiempo.ricar.eltiempo.API.APIServices.WeatherService;
+import com.eltiempo.ricar.eltiempo.Models.City;
+import com.eltiempo.ricar.eltiempo.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,12 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://api.openweathermap.org/data/2.5/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        WeatherService service = retrofit.create(WeatherService.class);
-        Call<City> cityCall = service.getCity("Sevilla, ES", "5731165715f7501401238fa51c5caecd");
+
+        WeatherService service = API.getApi().create(WeatherService.class);
+        Call<City> cityCall = service.getCity("London,UK", API.APPKEY);
 
         cityCall.enqueue(new Callback<City>() {
             @Override
