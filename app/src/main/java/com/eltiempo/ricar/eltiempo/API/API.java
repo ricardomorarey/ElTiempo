@@ -1,5 +1,9 @@
 package com.eltiempo.ricar.eltiempo.API;
 
+import com.eltiempo.ricar.eltiempo.API.Deserializer.MyDesserializer;
+import com.eltiempo.ricar.eltiempo.Models.City;
+import com.google.gson.GsonBuilder;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -15,9 +19,13 @@ public class API {
 
     public static Retrofit getApi(){
         if (retrofit == null){
+
+            GsonBuilder builder = new GsonBuilder();
+            builder.registerTypeAdapter(City.class, new MyDesserializer());
+
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(builder.create()))
                     .build();
         }
         return retrofit;

@@ -12,8 +12,6 @@ import com.eltiempo.ricar.eltiempo.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         WeatherService service = API.getApi().create(WeatherService.class);
-        Call<City> cityCall = service.getCity("London,UK", API.APPKEY);
+
+        Call<City> cityCall = service.getCity("London,UK", API.APPKEY, "metric", "es");
 
         cityCall.enqueue(new Callback<City>() {
             @Override
